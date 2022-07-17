@@ -22,11 +22,10 @@ Clone this repository to your local machine:
 $ git clone https://github.com/TouringPlans/shapeland.git
 ```
 
-Inside the repository is a directory called "Code".  Start Jupyter Notebook like this and you'll see the
-entire notebook that runs the simulator and prints results:
+Inside the repository is a directory called "Code".  Run the simulation file with an excel document that defines the simulation parameters like this. Then, you'll see a GUI displaying simulation results.
 
 ```
-$ jupyter notebook amusement_park_sim.ipynb
+$ python3 amusement_park_sim.py "GUI Development Simulation.xlsx"
 ```
 
 ## Code Organization

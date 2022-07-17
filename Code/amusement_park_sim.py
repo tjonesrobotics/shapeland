@@ -109,11 +109,12 @@ sim_parameters = {
     "ACTIVITIES": ACTIVITIES,
     "BEHAVIOR_ARCHETYPE_PARAMETERS": BEHAVIOR_ARCHETYPE_PARAMETERS,
 }
-park.write_data_to_file(
-    data=sim_parameters, 
-    output_file_path=f"{VERSION}/parameters", 
-    output_file_format="json"
-)
+
+#park.write_data_to_file(
+#    data=sim_parameters, 
+#    output_file_path=f"{VERSION}/parameters", 
+#    output_file_format="json"
+#)
 
 
 # Store + Print Data
