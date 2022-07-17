@@ -412,6 +412,7 @@ class Park:
                 }
             )
 
+
         # Activities
         total_vistors = []
         for activity_name, activity in self.activities.items():
@@ -440,6 +441,7 @@ class Park:
                 }
         )
             
+
         specific_agent_distribution = []
         for time, total_agents in self.history["total_active_agents"].items():
             for attraction_name, attraction in self.attractions.items():
@@ -546,6 +548,7 @@ class Park:
             show=show,
         )
 
+
         self.make_lineplot(
             dict_list=specific_agent_distribution, 
             x="Time", 
@@ -575,6 +578,7 @@ class Park:
             location=f"{self.version}/Agent Attractions Histogram",
             show=show,
         )
+
 
         self.make_barplot(
             dict_list=attraction_density, 
@@ -670,3 +674,12 @@ class Park:
         }
         writers[output_file_format](file_writer)
         file_writer.close()
+
+    def calculate_agents_per_action(self):
+        status={}
+        for id,agent in self.agents.items():
+            if not agent.state["within_park"]: continue
+            s = agent.state["current_action"]
+            if s not in status: status[s]=0
+            status[s]+=1
+        return status

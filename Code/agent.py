@@ -446,5 +446,6 @@ class Agent:
         self.state["current_location"] = "gate"
         self.state["current_action"] = "idling"
         self.state["activities"][name]["times_visited"] += 1
+        self.state["activities"][name]["time_spent"] += self.state["time_spent_at_current_location"]
         self.state["time_spent_at_current_location"] = 0
         self.log += f"Agent exited the activity {name} at time {time}. "
