@@ -123,5 +123,4 @@ sim_parameters = {
 #park.print_logs(selected_agent_ids = [778])
 
 import gui
-parkSummary=[["Attendance", "--"],["Average Wait per Ride","--"],["Rides per Person","6"],["Ride-Activity to Wait Time Ratio","0.3"]]
-g=gui.GUI_CLASS(PARK_MAP_FILENAME,parkSummary,park,ATTRACTIONS,HOURLY_PERCENT,timeSpentPerActivity,peoplePerActivity)
+g=gui.GUI_CLASS(PARK_MAP_FILENAME,park,ATTRACTIONS,HOURLY_PERCENT,timeSpentPerActivity,peoplePerActivity)
