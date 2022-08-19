@@ -98,7 +98,9 @@ class GUI_CLASS(QMainWindow):
 		"""
 
 		self.times=self.getTimeKeys()
-		if self.getTime()>=self.parkClose:
+
+		time = self.getTime()
+		if time<self.parkOpen or time>=self.parkClose:
 			self.setTime(self.parkOpen)
 		self.isPlaying=True
 
@@ -157,7 +159,6 @@ class GUI_CLASS(QMainWindow):
 
 		#Add the time window
 		self.timeEdit = QTimeEdit()
-		print(dir(self.timeEdit))
 		self.timeEdit.userTimeChanged.connect(self.updateDisplay)
 		buttonRow.addWidget(self.timeEdit)
 		self.setTime(self.parkOpen)
@@ -189,9 +190,11 @@ class GUI_CLASS(QMainWindow):
 		"""
 			Stops the animation if the end is reached. Otherwise, updates the display and continues.
 		"""
-		if self.getTime()>=self.parkClose:
-			self.threadTimer.stop()
-			self.isPlaying=False
+		time = self.getTime()
+		if time<self.parkOpen: time+=1440
+
+		if time>=self.parkClose:
+			self.pause()
 			return
 		self.updateDisplay()
 		self.setTime(self.getTime()+1)
@@ -292,10 +295,15 @@ class GUI_CLASS(QMainWindow):
 		"""
 			Update the attraction and park data displayed at each frame by calling a function for each
 		"""
+		time = self.getTime()
+		if time<self.parkOpen: time+=1440
+		if time>=self.parkClose: return
+		time -= self.parkOpen
 
 		self.updateAttractionCallouts()
 		self.updateParkSummaries()
-			
+		
+
 
 	def updateParkSummaries(self):
 		"""
@@ -314,7 +322,7 @@ class GUI_CLASS(QMainWindow):
 		"""
 			Update the attraction data displayed for the current time step.
 		"""
-		time = self.getTime()-self.parkOpen
+		time=self.getTime()-self.parkOpen
 		#For each attraction with meta data
 		for meta in self.attractionMetaData:
 			#Get the meta data and the object
